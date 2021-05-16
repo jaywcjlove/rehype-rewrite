@@ -8,7 +8,7 @@ const rehypeRaw = require('rehype-raw')
 const stringify = require('rehype-stringify')
 const rehypeRewrite = require('../lib')
 
-describe('rehype-attr test case', () => {
+describe('rehype-rewrite test case', () => {
   it('remove text', async () => {
     const html = `<h1>header</h1>`;
     const expected = `<h1></h1>`
