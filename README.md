@@ -34,6 +34,9 @@ const htmlStr = rehype()
   .toString()
 ```
 
+> ```html
+> <h1>header</h1>
+> ```
 > Output: 
 > 
 > ```html
@@ -59,6 +62,9 @@ const htmlStr = rehype()
   .toString()
 ```
 
+> ```html
+> <h1>header</h1>
+> ```
 > Output: 
 > 
 > ```html
@@ -91,6 +97,9 @@ const htmlStr = rehype()
   .toString()
 ```
 
+> ```html
+> <h1>hello</h1>
+> ```
 > Output: 
 > 
 > ```html
@@ -121,6 +130,10 @@ const htmlStr = unified()
   .toString()
 ```
 
+> ```html
+> <h1>hello</h1>
+> ```
+>
 > Output: 
 > 
 > ```html
