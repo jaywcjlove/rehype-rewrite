@@ -5,7 +5,7 @@ rehype-rewrite
 [![Build](https://github.com/jaywcjlove/rehype-rewrite/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/rehype-rewrite/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/jaywcjlove/rehype-rewrite/badge.svg?branch=main)](https://coveralls.io/github/jaywcjlove/rehype-rewrite?branch=main)
 
-Rewrite element by elements with [rehype](https://github.com/rehypejs/rehype).
+Rewrite element with [rehype](https://github.com/rehypejs/rehype).
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
   "name": "rehype-rewrite",
   "version": "1.0.0",
-  "description": "Rewrite element by elements with rehype.",
+  "description": "Rewrite element with rehype.",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
   "main": "lib/index.js",
