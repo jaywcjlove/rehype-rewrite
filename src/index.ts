@@ -3,7 +3,7 @@ import { Plugin } from 'unified'
 import visit from './visit'
 
 export type MdastTransformer = (tree: Root) => void
-export type RemarkRewriteHandle = (node: Content, index: number, parent: Parent) => Content
+export type RemarkRewriteHandle = (node: Content, index: number, parent: Parent) => void
 
 const remarkRewrite: Plugin<[RemarkRewriteHandle?]> = (handle): MdastTransformer =>{
   return (tree: Root) => {
