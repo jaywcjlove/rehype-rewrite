@@ -3,9 +3,9 @@ import { Plugin } from 'unified'
 import visit from './visit'
 
 export type MdastTransformer = (tree: Root) => void
-export type RemarkRewriteHandle = (node: Content, index: number, parent: Parent) => void
+export type RehypeRewriteHandle = (node: Content, index: number, parent: Parent) => void
 
-const remarkRewrite: Plugin<[RemarkRewriteHandle?]> = (handle): MdastTransformer =>{
+const remarkRewrite: Plugin<[RehypeRewriteHandle?]> = (handle): MdastTransformer =>{
   return (tree: Root) => {
     visit(tree, (node: Content, index: number, parent: Parent) => {
       if (handle && typeof handle === 'function') {
