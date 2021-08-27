@@ -1,16 +1,17 @@
-import { Root, Parent, Content } from 'ts-mdast'
+import { Parent, NodeData } from 'unist';
 
-type Callback = (node: Content, index: number, parent: Parent | Content) => void
-
-export default function visit(tree: Root, callback: Callback) {
+export type VisitCallback = (node: NodeData<Parent>, index: number, parent: NodeData<Parent>) => void;
+export default function visit(tree?: NodeData<Parent>, callback?: VisitCallback) {
   if (tree && tree.children && Array.isArray(tree.children)) {
     handle(tree.children, tree, callback)
   }
 }
 
-function handle(tree: Content[], parent: Parent | Content, callback: Callback) {
+function handle(tree: NodeData<Parent>[], parent: NodeData<Parent>, callback?: VisitCallback) {
   tree.forEach((item, index) => {
-    callback(item, index, parent)
+    if (callback) {
+      callback(item, index, parent);
+    }
     if (item && Array.isArray(item.children)) {
       handle(item.children, item, callback)
     }
