@@ -1,8 +1,7 @@
-import { Parent, NodeData, Node } from 'unist';
 import { Plugin, Transformer } from 'unified';
-import visit from './visit'
+import { Parent, NodeData, Node } from 'unist';
+import visit from './visit';
 
-export type MdastTransformer = (tree: NodeData<Parent>) => void
 export type RehypeRewriteOptions = (node: NodeData<Parent>, index: number, parent: NodeData<Parent>) => void
 
 const remarkRewrite: Plugin<[RehypeRewriteOptions?]> = (handle): Transformer => {

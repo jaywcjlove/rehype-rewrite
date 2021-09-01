@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
@@ -11,12 +11,12 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-
     "esModuleInterop": false,
     "noImplicitAny": true,
     "outDir": "lib",
     "baseUrl": "."
   },
   "include": [
-    "src/**/*",  ]
+    "src/**/*"
+  ]
 }

@@ -4,15 +4,14 @@
   "description": "Rewrite element with rehype.",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
   "main": "lib/index.js",
   "scripts": {
     "prepack": "npm run build",
     "start": "node lib/index.js",
-    "watch": "npm run watch:ts",
-    "watch:ts": "tsbb watch & npm run build:types -- --watch",
-    "build": "npm run build:ts && npm run build:types",
-    "build:ts": "tsbb build",
-    "build:types": "tsbb types",
+    "watch": "tsbb watch --no-esm --disable-babel",
+    "build": "tsbb build --no-esm --disable-babel",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
@@ -43,8 +42,6 @@
     ]
   },
   "dependencies": {
-    "@types/unist": "^2.0.0",
-    "ts-mdast": "1.0.0",
     "unified": "10.1.0"
   },
   "devDependencies": {
@@ -55,6 +52,6 @@
     "rehype-raw": "6.1.0",
     "remark-parse": "10.0.0",
     "remark-rehype": "9.0.0",
-    "tsbb": "2.3.1"
+    "tsbb": "3.0.3"
   }
 }

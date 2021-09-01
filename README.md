@@ -10,17 +10,18 @@ Rewrite element with [rehype](https://github.com/rehypejs/rehype).
 
 ## Installation
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c): Node 12+ is needed to use it and it must be `import` instead of `require`.
+
 ```bash
-npm i rehype-rewrite
-yarn add rehype-rewrite
+npm install rehype-rewrite
 ```
 
 ## Usage
 
 ```js
-const rehype = require('rehype')
-const rehypeRewrite = require('rehype-rewrite')
-const stringify = require('rehype-stringify')
+import { rehype } from 'rehype';
+import rehypeRewrite from 'rehype-rewrite';
+import stringify from 'rehype-stringify';
 
 const html = `<h1>header</h1>`;
 const htmlStr = rehype()
@@ -47,9 +48,9 @@ const htmlStr = rehype()
 
 
 ```js
-const rehype = require('rehype')
-const rehypeRewrite = require('rehype-rewrite')
-const stringify = require('rehype-stringify')
+import { rehype } from 'rehype';
+import rehypeRewrite from 'rehype-rewrite';
+import stringify from 'rehype-stringify';
 
 const html = `<h1>header</h1>`;
 const htmlStr = rehype()
@@ -74,9 +75,9 @@ const htmlStr = rehype()
 > 
 
 ```js
-const rehype = require('rehype')
-const rehypeRewrite = require('rehype-rewrite')
-const stringify = require('rehype-stringify')
+import { rehype } from 'rehype';
+import rehypeRewrite from 'rehype-rewrite';
+import stringify from 'rehype-stringify';
 
 const html = `<h1>hello</h1>`;
 const htmlStr = rehype()
@@ -109,12 +110,12 @@ const htmlStr = rehype()
 > 
 
 ```js
-const unified = require("unified");
-const remarkParse = require('remark-parse')
-const remark2rehype = require('remark-rehype')
-const rehypeRaw = require('rehype-raw')
-const rehypeRewrite = require('rehype-rewrite')
-const stringify = require('rehype-stringify')
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import rehypeRaw from 'rehype-raw';
+import remark2rehype from 'remark-rehype';
+import rehypeRewrite from 'rehype-rewrite';
+import stringify from 'rehype-stringify';
 
 const html = `<h1>hello</h1>`;
 const htmlStr = unified()
