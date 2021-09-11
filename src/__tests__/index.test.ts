@@ -5,7 +5,7 @@ import remark2rehype from 'remark-rehype';
 import { rehype } from 'rehype';
 import rehypeRaw from 'rehype-raw';
 import stringify from 'rehype-stringify';
-import rehypeRewrite from '../';
+import rehypeRewrite from '..';
 
 describe('rehype-rewrite test case', () => {
   it('remove text', async () => {

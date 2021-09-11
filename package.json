@@ -33,10 +33,6 @@
     "unified"
   ],
   "jest": {
-    "collectCoverageFrom": [
-      "lib/*.js",
-      "!lib/*.d.ts"
-    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
