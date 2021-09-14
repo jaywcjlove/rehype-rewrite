@@ -1,7 +1,7 @@
 import { Parent, NodeData } from 'unist';
 
 export type VisitCallback = (node: NodeData<Parent>, index: number, parent: NodeData<Parent>) => void;
-export default function visit(tree?: NodeData<Parent>, callback?: VisitCallback) {
+export function visit(tree?: NodeData<Parent>, callback?: VisitCallback) {
   if (tree && tree.children && Array.isArray(tree.children)) {
     handle(tree.children, tree, callback)
   }
