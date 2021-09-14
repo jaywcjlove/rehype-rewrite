@@ -20,6 +20,7 @@
     "url": "https://github.com/jaywcjlove/rehype-rewrite"
   },
   "files": [
+    "src",
     "lib"
   ],
   "keywords": [
