@@ -1,6 +1,6 @@
 {
   "name": "rehype-rewrite",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Rewrite element with rehype.",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
@@ -37,6 +37,9 @@
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
+  },
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "dependencies": {
     "unified": "10.1.0"
