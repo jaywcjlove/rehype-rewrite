@@ -1,8 +1,8 @@
 import { Plugin, Transformer } from 'unified';
 import { Parent, NodeData, Node } from 'unist';
-import { visit } from './visit';
+import { visit } from './visit.js';
 
-export * from './visit';
+export * from './visit.js';
 
 export type RehypeRewriteOptions = (node: NodeData<Parent>, index: number, parent: NodeData<Parent>) => void
 
