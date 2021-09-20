@@ -36,6 +36,10 @@
     "unified"
   ],
   "jest": {
+    "coverageReporters": [
+      "lcov",
+      "json-summary"
+    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
