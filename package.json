@@ -1,6 +1,6 @@
 {
   "name": "rehype-rewrite",
-  "version": "2.1.3",
+  "version": "3.0.0",
   "description": "Rewrite element with rehype.",
   "homepage": "https://jaywcjlove.github.io/rehype-rewrite",
   "author": "Kenny Wong <wowohoo@qq.com>",
@@ -28,19 +28,16 @@
   ],
   "keywords": [
     "rehype",
-    "markdown",
     "rehype-rewrite",
     "rewrite",
+    "element",
+    "markdown",
     "javascript",
     "html",
     "ast",
     "unified"
   ],
   "jest": {
-    "coverageReporters": [
-      "lcov",
-      "json-summary"
-    ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
