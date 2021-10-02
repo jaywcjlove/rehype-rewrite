@@ -15,6 +15,7 @@ describe('rehype-rewrite test case', () => {
       .data('settings', { fragment: true })
       .use(rehypeRewrite, (node) => {
         if(node.type == 'text' && node.value == 'header') {
+          console.log('node.value:', node.value)
           node.value = ''
         }
       })
@@ -46,7 +47,7 @@ describe('rehype-rewrite test case', () => {
     const expected = `<h1>hello<span> world</span></h1>`
     const htmlStr = rehype()
       .data('settings', { fragment: true })
-      .use(rehypeRewrite, (node: any) => {
+      .use(rehypeRewrite, (node) => {
         if (node.type == 'element' && node.tagName == 'h1') {
           node.children = [ ...node.children, {
             type: 'element',
@@ -72,7 +73,7 @@ describe('rehype-rewrite test case', () => {
       .use(remarkParse)
       .use(remark2rehype, { allowDangerousHtml: true })
       .use(rehypeRaw)
-      .use(rehypeRewrite, (node: any) => {
+      .use(rehypeRewrite, (node) => {
         if (node.type == 'element' && node.tagName == 'p') {
           node.properties = { ...node.properties, style: 'color:red;' }
         }
