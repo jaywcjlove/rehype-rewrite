@@ -19,6 +19,16 @@ npm install rehype-rewrite
 
 ## Usage
 
+> ⚠️ Migrate from rehype-rewrite ~~v2.x~~ to `v3.x`.
+> 
+> ```diff
+> rehype()
+> - .use(rehypeRewrite, (node, index, parent) => {})
+> + .use(rehypeRewrite, {
+> +   rewrite: (node, index, parent) => {}
+> + })
+> ```
+
 ```js
 import { rehype } from 'rehype';
 import rehypeRewrite from 'rehype-rewrite';
@@ -27,9 +37,11 @@ import stringify from 'rehype-stringify';
 const html = `<h1>header</h1>`;
 const htmlStr = rehype()
   .data('settings', { fragment: true })
-  .use(rehypeRewrite, (node, index, parent) => {
-    if(node.type == 'text' && node.value == 'header') {
-      node.value = ''
+  .use(rehypeRewrite, {
+    rewrite: (node, index, parent) => {
+      if(node.type == 'text' && node.value == 'header') {
+        node.value = ''
+      }
     }
   })
   .use(stringify)
@@ -40,13 +52,72 @@ const htmlStr = rehype()
 > ```html
 > <h1>header</h1>
 > ```
-> Output: 
+> **`Output:`** 
 > 
 > ```html
 > <h1></h1>
 > ```
 > 
 
+
+## Options
+
+```ts
+import { Root, Element, ElementContent } from 'hast';
+export declare type RehypeRewriteOptions = {
+  selector?: string;
+  rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
+};
+```
+
+### `selector?: string;`
+
+Select an element to be wrapped. Expects a string selector that can be passed to hast-util-select ([supported selectors](https://github.com/syntax-tree/hast-util-select/blob/master/readme.md#support)). If `selector` is not set then wrap will check for a body all elements.
+
+### `rewrite(node, index, parent): void;`
+
+Rewrite element.
+
+## Example
+
+### Example 1
+
+```js
+import { rehype } from 'rehype';
+import rehypeRewrite from 'rehype-rewrite';
+import stringify from 'rehype-stringify';
+
+const html = `<h1>header</h1><h1>header</h1><h1 class="title3">header</h1>`;
+const htmlStr = rehype()
+  .data('settings', { fragment: true })
+  .use(rehypeRewrite, {
+    selector: 'h1',
+    rewrite: (node) => {
+      if (node.type === 'element') {
+        node.properties.className = 'test';
+      }
+    }
+  })
+  .use(stringify)
+  .processSync(html)
+  .toString()
+```
+
+> ```html
+> <h1>header</h1>
+> <h1>header</h1>
+> <h1 class="title3">header</h1>
+> ```
+> **`Output:`** 
+> 
+> ```html
+> <h1 class="test">header</h1>
+> <h1 class="test">header</h1>
+> <h1 class="test">header</h1>
+> ```
+>
+
+### Example 2
 
 ```js
 import { rehype } from 'rehype';
@@ -55,9 +126,11 @@ import stringify from 'rehype-stringify';
 
 const html = `<h1>header</h1>`;
 const htmlStr = rehype()
-  .use(rehypeRewrite, (node) => {
-    if (node.type == 'element' && node.tagName == 'body') {
-      node.properties = { ...node.properties, style: 'color:red;'}
+  .use(rehypeRewrite, {
+    rewrite: (node) => {
+      if (node.type == 'element' && node.tagName == 'body') {
+        node.properties = { ...node.properties, style: 'color:red;'}
+      }
     }
   })
   .use(stringify)
@@ -68,12 +141,14 @@ const htmlStr = rehype()
 > ```html
 > <h1>header</h1>
 > ```
-> Output: 
+> **`Output:`** 
 > 
 > ```html
 > <html><head></head><body style="color:red;"><h1>header</h1></body></html>
 > ```
-> 
+>
+
+### Example 3
 
 ```js
 import { rehype } from 'rehype';
@@ -83,16 +158,18 @@ import stringify from 'rehype-stringify';
 const html = `<h1>hello</h1>`;
 const htmlStr = rehype()
   .data('settings', { fragment: true })
-  .use(rehypeRewrite, (node) => {
-    if (node.type == 'element' && node.tagName == 'h1') {
-      node.children = [ ...node.children, {
-        type: 'element',
-        tagName: 'span',
-        properties: {},
-        children: [
-          {type: 'text', value: ' world'}
-        ]
-      }]
+  .use(rehypeRewrite, {
+    rewrite: (node) => {
+      if (node.type == 'element' && node.tagName == 'h1') {
+        node.children = [ ...node.children, {
+          type: 'element',
+          tagName: 'span',
+          properties: {},
+          children: [
+            {type: 'text', value: ' world'}
+          ]
+        }]
+      }
     }
   })
   .use(stringify)
@@ -103,12 +180,14 @@ const htmlStr = rehype()
 > ```html
 > <h1>hello</h1>
 > ```
-> Output: 
+> **`Output:`** 
 > 
 > ```html
 > <h1>hello<span> world</span></h1>
 > ```
 > 
+
+### Example 4
 
 ```js
 import { unified } from 'unified';
@@ -123,9 +202,11 @@ const htmlStr = unified()
   .use(remarkParse)
   .use(remark2rehype, { allowDangerousHtml: true })
   .use(rehypeRaw)
-  .use(rehypeRewrite, (node) => {
-    if (node.type == 'element' && node.tagName == 'p') {
-      node.properties = { ...node.properties, style: 'color:red;' }
+  .use(rehypeRewrite, {
+    rewrite: (node) => {
+      if (node.type == 'element' && node.tagName == 'p') {
+        node.properties = { ...node.properties, style: 'color:red;' }
+      }
     }
   })
   .use(stringify)
@@ -137,7 +218,7 @@ const htmlStr = unified()
 > <h1>hello</h1>
 > ```
 >
-> Output: 
+> **`Output:`** 
 > 
 > ```html
 > <p style="color:red;">Hello World!</p>

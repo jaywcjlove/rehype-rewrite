@@ -1,5 +1,4 @@
-/// <reference types="jest" />
-import { unified } from 'unified'
+import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import { rehype } from 'rehype';
@@ -8,15 +7,89 @@ import stringify from 'rehype-stringify';
 import rehypeRewrite from '..';
 
 describe('rehype-rewrite test case', () => {
+  it('selector options', async () => {
+    const html = `<h1>header</h1>`;
+    const expected = `<h1 class="test">header</h1>`
+    const htmlStr = rehype()
+      .data('settings', { fragment: true })
+      .use(rehypeRewrite, {
+        selector: 'h1',
+        rewrite: (node) => {
+          if (node.type === 'element') {
+            node.properties = { ...node.properties, class: 'test' }
+          }
+        }
+      })
+      .use(stringify)
+      .processSync(html)
+      .toString()
+
+      expect(htmlStr).toEqual(expected);
+  });
+
+  it('selector options', async () => {
+    const html = `<h1>header</h1><h1>header</h1><h1 class="title3">header</h1>`;
+    const expected = `<h1 class="test">header</h1><h1 class="test">header</h1><h1 class="test">header</h1>`
+    const htmlStr = rehype()
+      .data('settings', { fragment: true })
+      .use(rehypeRewrite, {
+        selector: 'h1',
+        rewrite: (node) => {
+          if (node.type === 'element') {
+            node.properties!.className = 'test';
+          }
+        }
+      })
+      .use(stringify)
+      .processSync(html)
+      .toString()
+
+      expect(htmlStr).toEqual(expected);
+  });
+
+  it('selector = undefined', async () => {
+    const html = `<h1>header</h1>`;
+    const expected = `<h1>header</h1>`
+    const htmlStr = rehype()
+      .data('settings', { fragment: true })
+      .use(rehypeRewrite, {
+        selector: 'h1.good',
+        rewrite: (node) => {
+          if (node.type === 'element') {
+            node.properties = { ...node.properties, class: 'test' }
+          }
+        }
+      })
+      .use(stringify)
+      .processSync(html)
+      .toString()
+
+      expect(htmlStr).toEqual(expected);
+  });
+
+  it('selector = undefined', async () => {
+    const html = `<h1>header</h1>`;
+    const expected = `<h1>header</h1>`
+    const htmlStr = rehype()
+      .data('settings', { fragment: true })
+      .use(rehypeRewrite)
+      .use(stringify)
+      .processSync(html)
+      .toString()
+
+      expect(htmlStr).toEqual(expected);
+  });
+
   it('remove text', async () => {
     const html = `<h1>header</h1>`;
     const expected = `<h1></h1>`
     const htmlStr = rehype()
       .data('settings', { fragment: true })
-      .use(rehypeRewrite, (node) => {
-        if(node.type == 'text' && node.value == 'header') {
-          console.log('node.value:', node.value)
-          node.value = ''
+      .use(rehypeRewrite, {
+        rewrite: (node) => {
+          if(node.type == 'text' && node.value == 'header') {
+            node.value = ''
+          }
         }
       })
       .use(stringify)
@@ -30,9 +103,11 @@ describe('rehype-rewrite test case', () => {
     const html = `<h1>header</h1>`;
     const expected = `<html><head></head><body style="color:red;"><h1>header</h1></body></html>`
     const htmlStr = rehype()
-      .use(rehypeRewrite, (node) => {
-        if (node.type == 'element' && node.tagName == 'body') {
-          node.properties = { ...node.properties, style: 'color:red;'}
+      .use(rehypeRewrite, {
+        rewrite: (node) => {
+          if (node.type == 'element' && node.tagName == 'body') {
+            node.properties = { ...node.properties, style: 'color:red;'}
+          }
         }
       })
       .use(stringify)
@@ -47,16 +122,18 @@ describe('rehype-rewrite test case', () => {
     const expected = `<h1>hello<span> world</span></h1>`
     const htmlStr = rehype()
       .data('settings', { fragment: true })
-      .use(rehypeRewrite, (node) => {
-        if (node.type == 'element' && node.tagName == 'h1') {
-          node.children = [ ...node.children, {
-            type: 'element',
-            tagName: 'span',
-            properties: {},
-            children: [
-              {type: 'text', value: ' world'}
-            ]
-          }]
+      .use(rehypeRewrite, {
+        rewrite: (node) => {
+          if (node.type == 'element' && node.tagName == 'h1') {
+            node.children = [ ...node.children, {
+              type: 'element',
+              tagName: 'span',
+              properties: {},
+              children: [
+                {type: 'text', value: ' world'}
+              ]
+            }]
+          }
         }
       })
       .use(stringify)
@@ -73,9 +150,11 @@ describe('rehype-rewrite test case', () => {
       .use(remarkParse)
       .use(remark2rehype, { allowDangerousHtml: true })
       .use(rehypeRaw)
-      .use(rehypeRewrite, (node) => {
-        if (node.type == 'element' && node.tagName == 'p') {
-          node.properties = { ...node.properties, style: 'color:red;' }
+      .use(rehypeRewrite, {
+        rewrite: (node) => {
+          if (node.type == 'element' && node.tagName == 'p') {
+            node.properties = { ...node.properties, style: 'color:red;' }
+          }
         }
       })
       .use(stringify)
@@ -97,6 +176,5 @@ describe('rehype-rewrite test case', () => {
 
       expect(htmlStr).toEqual(expected);
   });
-
 });
 

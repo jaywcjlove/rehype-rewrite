@@ -1,15 +1,30 @@
 import { Plugin } from 'unified';
 import { Root, Element, ElementContent } from 'hast';
 import { visit } from 'unist-util-visit';
+import { selectAll } from 'hast-util-select';
+import { Test } from 'unist-util-is';
 
-export type RehypeRewriteOptions = (node: ElementContent, index: number | null, parent: Root | Element | null) => void;
+export type RehypeRewriteOptions = {
+  selector?: string;
+  rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
+}
 
-const remarkRewrite: Plugin<[RehypeRewriteOptions?], Root> = (handle) => {
-  return (tree: Root) => {
-    visit(tree, (node, index, parent) => {
-      if (handle && typeof handle === 'function') {
-        handle(node as ElementContent, index, parent);
+const remarkRewrite: Plugin<[RehypeRewriteOptions?], Root> = (options) => {
+  const { selector, rewrite } = options || {};
+  return (tree) => {
+    if (!rewrite || typeof rewrite !== 'function') return;
+    if (selector && typeof selector === 'string') {
+      const selected = selectAll(selector, tree);
+      if (selected && selected.length > 0) {
+        visit(tree, selected as unknown as Test, (node: Element, index, parent) => {
+          rewrite(node, index, parent);
+        });
       }
+      return;
+    }
+
+    visit(tree, (node: ElementContent, index, parent) => {
+      rewrite(node, index, parent);
     });
   }
 }
