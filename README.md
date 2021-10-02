@@ -204,7 +204,7 @@ const htmlStr = unified()
   .use(rehypeRaw)
   .use(rehypeRewrite, {
     rewrite: (node) => {
-      if (node.type == 'element' && node.tagName == 'p') {
+      if (node.type == 'element' && node.tagName == 'h1') {
         node.properties = { ...node.properties, style: 'color:red;' }
       }
     }
@@ -221,7 +221,7 @@ const htmlStr = unified()
 > **`Output:`** 
 > 
 > ```html
-> <p style="color:red;">Hello World!</p>
+> <h1 style="color:red;">Hello World!</h1>
 > ```
 > 
 
