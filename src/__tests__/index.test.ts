@@ -30,7 +30,7 @@ describe('rehype-rewrite test case', () => {
     const html = `<h1>header</h1>`;
     const expected = `<html><head></head><body style="color:red;"><h1>header</h1></body></html>`
     const htmlStr = rehype()
-      .use(rehypeRewrite, (node: any) => {
+      .use(rehypeRewrite, (node) => {
         if (node.type == 'element' && node.tagName == 'body') {
           node.properties = { ...node.properties, style: 'color:red;'}
         }
