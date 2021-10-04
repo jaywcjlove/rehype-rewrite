@@ -63,10 +63,15 @@ const htmlStr = rehype()
 
 ```ts
 import { Plugin } from 'unified';
-import { Root, Element, ElementContent } from 'hast';
+import { Root, Element, RootContent } from 'hast';
 export declare type RehypeRewriteOptions = {
+  /**
+   * Select an element to be wrapped. Expects a string selector that can be passed to hast-util-select ([supported selectors](https://github.com/syntax-tree/hast-util-select/blob/master/readme.md#support)).
+   * If `selector` is not set then wrap will check for a body all elements.
+   */
   selector?: string;
-  rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
+  /** Rewrite Element. */
+  rewrite(node: Root | RootContent, index: number | null, parent: Root | Element | null): void;
 };
 declare const remarkRewrite: Plugin<[RehypeRewriteOptions?], Root>;
 export default remarkRewrite;
