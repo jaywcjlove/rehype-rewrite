@@ -63,11 +63,14 @@ const htmlStr = rehype()
 ## Options
 
 ```ts
+import { Plugin } from 'unified';
 import { Root, Element, ElementContent } from 'hast';
 export declare type RehypeRewriteOptions = {
-  selector?: string;
-  rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
+    selector?: string;
+    rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
 };
+declare const remarkRewrite: Plugin<[RehypeRewriteOptions?], Root>;
+export default remarkRewrite;
 ```
 
 ### `selector?: string;`
