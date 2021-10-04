@@ -1,5 +1,5 @@
 rehype-rewrite
----
+===
 
 [![Downloads](https://img.shields.io/npm/dm/rehype-rewrite.svg?style=flat)](https://www.npmjs.com/package/rehype-rewrite)
 [![NPM version](https://img.shields.io/npm/v/rehype-rewrite.svg?style=flat)](https://npmjs.org/package/rehype-rewrite)
@@ -59,15 +59,14 @@ const htmlStr = rehype()
 > ```
 > 
 
-
 ## Options
 
 ```ts
 import { Plugin } from 'unified';
 import { Root, Element, ElementContent } from 'hast';
 export declare type RehypeRewriteOptions = {
-    selector?: string;
-    rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
+  selector?: string;
+  rewrite(node: ElementContent, index: number | null, parent: Root | Element | null): void;
 };
 declare const remarkRewrite: Plugin<[RehypeRewriteOptions?], Root>;
 export default remarkRewrite;
