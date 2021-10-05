@@ -56,7 +56,7 @@
     "rehype-raw": "6.1.0",
     "remark-parse": "10.0.0",
     "remark-rehype": "10.0.0",
-    "tsc-esm-fix": "2.7.2",
+    "tsc-esm-fix": "2.7.3",
     "tsbb": "3.4.1"
   }
 }
