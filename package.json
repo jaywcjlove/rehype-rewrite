@@ -1,6 +1,6 @@
 {
   "name": "rehype-rewrite",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Rewrite element with rehype.",
   "homepage": "https://jaywcjlove.github.io/rehype-rewrite",
   "author": "Kenny Wong <wowohoo@qq.com>",
