@@ -31,6 +31,7 @@ npm install rehype-rewrite
 > ```
 <!--rehype:style=border-left-color: #fddf4c;-->
 
+<!--rehype:-->
 ```js
 import { rehype } from 'rehype';
 import rehypeRewrite from 'rehype-rewrite';
