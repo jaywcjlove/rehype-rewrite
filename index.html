@@ -36,15 +36,15 @@
             <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
           </svg></a>Usage</h2>
       <blockquote>
-        <p>⚠️ Migrate from rehype-rewrite <del>v2.x</del> to <code>v3.x</code>.</p>
+        <p>🚧 Migrate from rehype-rewrite <del style="color: red;">v2.x</del><!--rehype:style=color: red;--> to <code style="background-color: #4caf50; color: #fff;">v3.x</code><!--rehype:style=background-color: #4caf50; color: #fff;-->.</p>
         <pre class="language-diff"><code class="language-diff">rehype()
 <span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line"> .use(rehypeRewrite, (node, index, parent) => {})
 </span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line"> .use(rehypeRewrite, {
 </span><span class="token prefix inserted">+</span><span class="token line">   rewrite: (node, index, parent) => {}
 </span><span class="token prefix inserted">+</span><span class="token line"> })
 </span></span></code></pre>
-      </blockquote>
-      <pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> rehype <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'rehype'</span><span class="token punctuation">;</span>
+      </blockquote><!--rehype:style=border-left-color: #fddf4c;-->
+      <pre class="language-js" data-type="rehyp"><code class="language-js" style="border-left-color: #fddf4c;"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> rehype <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'rehype'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports">rehypeRewrite</span> <span class="token keyword module">from</span> <span class="token string">'rehype-rewrite'</span><span class="token punctuation">;</span>
 <span class="token keyword module">import</span> <span class="token imports">stringify</span> <span class="token keyword module">from</span> <span class="token string">'rehype-stringify'</span><span class="token punctuation">;</span>
 
