@@ -1,5 +1,6 @@
 rehype-rewrite
 ===
+<!--rehype:style=display: flex; height: 230px; align-items: center; justify-content: center; font-size: 38px;-->
 
 [![Downloads](https://img.shields.io/npm/dm/rehype-rewrite.svg?style=flat)](https://www.npmjs.com/package/rehype-rewrite)
 [![NPM version](https://img.shields.io/npm/v/rehype-rewrite.svg?style=flat)](https://npmjs.org/package/rehype-rewrite)
