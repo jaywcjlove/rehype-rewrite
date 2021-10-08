@@ -19,7 +19,7 @@ npm install rehype-rewrite
 
 ## Usage
 
-> ⚠️ Migrate from rehype-rewrite ~~v2.x~~ to `v3.x`.
+> 🚧  Migrate from rehype-rewrite ~~v2.x~~<!--rehype:style=color: red;--> to `v3.x`<!--rehype:style=background-color: #4caf50; color: #fff;-->.
 > 
 > ```diff
 > rehype()
@@ -28,6 +28,7 @@ npm install rehype-rewrite
 > +   rewrite: (node, index, parent) => {}
 > + })
 > ```
+<!--rehype:style=border-left-color: #fddf4c;-->
 
 ```js
 import { rehype } from 'rehype';
