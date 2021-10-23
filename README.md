@@ -237,6 +237,7 @@ const htmlStr = unified()
 
 ## Related
 
+- [`rehype-video`](https://github.com/jaywcjlove/rehype-video) Add improved video syntax: links to `.mp4` and `.mov` turn into videos.
 - [`rehype-attr`](https://github.com/jaywcjlove/rehype-attr) New syntax to add attributes to Markdown.
 - [`rehypejs`](https://github.com/rehypejs/rehype) HTML processor powered by plugins part of the @unifiedjs collective
 - [`remark-parse`](https://www.npmjs.com/package/remark-parse) remark plugin to parse Markdown
