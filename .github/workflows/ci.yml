@@ -22,24 +22,27 @@ jobs:
       - run: coverage-badges
       - run: markdown-to-html --output coverage/index.html
 
+      - name: Create Tag
+        id: create_tag
+        uses: jaywcjlove/create-tag-action@v1.3.6
+        with:
+          package-path: ./package.json
+
+      - name: get tag version
+        id: tag_version
+        uses: jaywcjlove/changelog-generator@v1.5.0
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./coverage
 
-      - name: Create Tag
-        id: create_tag
-        uses: jaywcjlove/create-tag-action@v1.2.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          package-path: ./package.json
-
       - name: Generate Changelog
         id: changelog
-        uses: jaywcjlove/changelog-generator@v1.4.6
+        uses: jaywcjlove/changelog-generator@v1.5.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           head-ref: ${{steps.create_tag.outputs.version}}
           filter-author: (小弟调调™|Renovate Bot)
           filter: '[R|r]elease[d]\s+[v|V]\d(\.\d+){0,2}'
@@ -54,9 +57,12 @@ jobs:
           body: |
             [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/rehype-rewrite@${{steps.create_tag.outputs.versionNumber}}/file/README.md) 
 
-            ${{ steps.changelog.outputs.compareurl }}
+            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/jaywcjlove/rehype-rewrite/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
+            Comparing Changes: ${{ steps.changelog.outputs.compareurl }}  
 
             ${{ steps.changelog.outputs.changelog }}
 
-      - run: npm install @jsdevtools/npm-publish -g
-      - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./package.json
