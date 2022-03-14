@@ -66,7 +66,9 @@ const htmlStr = rehype()
 
 ```ts
 import { Plugin } from 'unified';
-import { Root, Element, RootContent } from 'hast';
+import { Root, Element, ElementContent, RootContent } from 'hast';
+/** Get the node tree source code string */
+export declare const getCodeString: (data?: ElementContent[], code?: string) => string;
 export declare type RehypeRewriteOptions = {
   /**
    * Select an element to be wrapped. Expects a string selector that can be passed to hast-util-select ([supported selectors](https://github.com/syntax-tree/hast-util-select/blob/master/readme.md#support)).

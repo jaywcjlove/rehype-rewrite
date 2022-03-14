@@ -1,8 +1,20 @@
 import { Plugin } from 'unified';
-import { Root, Element, RootContent } from 'hast';
+import { Root, Element, ElementContent, RootContent } from 'hast';
 import { visit } from 'unist-util-visit';
 import { selectAll } from 'hast-util-select';
 import { Test } from 'unist-util-is';
+
+/** Get the node tree source code string */
+export const getCodeString = (data: ElementContent[] = [], code: string = '') => {
+  data.forEach((node) => {
+    if (node.type === 'text') {
+      code += node.value;
+    } else if (node.type === 'element' && node.children && Array.isArray(node.children)) {
+      code += getCodeString(node.children);
+    }
+  });
+  return code;
+};
 
 export type RehypeRewriteOptions = {
   /**

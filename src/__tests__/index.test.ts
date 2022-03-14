@@ -4,7 +4,34 @@ import remark2rehype from 'remark-rehype';
 import { rehype } from 'rehype';
 import rehypeRaw from 'rehype-raw';
 import stringify from 'rehype-stringify';
-import rehypeRewrite from '..';
+import rehypeRewrite, { getCodeString } from '..';
+
+describe('getCodeString test case', () => {
+  it('selector options', async () => {
+    const str = getCodeString([
+      {
+        type: 'text',
+        value: 'Hello'
+      },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: {
+          class: 'octicon octicon-link',
+        },
+        children: [
+          {
+            type: 'text',
+            value: 'World'
+          },
+        ]
+      }
+    ]);
+    expect(str).toEqual('HelloWorld');
+    expect(getCodeString()).toEqual('');
+    expect(getCodeString(undefined, 'good')).toEqual('good');
+  });
+})
 
 describe('rehype-rewrite test case', () => {
   it('selector options', async () => {
