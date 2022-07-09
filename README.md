@@ -7,6 +7,7 @@ rehype-rewrite
 [![Build](https://github.com/jaywcjlove/rehype-rewrite/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/rehype-rewrite/actions/workflows/ci.yml)
 [![Coverage Status](https://jaywcjlove.github.io/rehype-rewrite/badges.svg)](https://jaywcjlove.github.io/rehype-rewrite/lcov-report/)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/rehype-rewrite)](https://bundlephobia.com/result?p=rehype-rewrite)
+[![Repo Dependents](https://badgen.net/github/dependents-repo/jaywcjlove/rehype-rewrite)](https://github.com/jaywcjlove/rehype-rewrite/network/dependents)
 
 Rewrite element with [rehype](https://github.com/rehypejs/rehype).
 
