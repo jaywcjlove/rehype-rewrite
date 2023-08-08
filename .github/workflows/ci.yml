@@ -19,9 +19,26 @@ jobs:
       - run: npm run type-check
       - run: npm run coverage
 
-      - run: npm i coverage-badges-cli markdown-to-html-cli -g
-      - run: coverage-badges
-      - run: markdown-to-html --output coverage/index.html
+      - name: Create idoc config.
+        run: |
+          cat > idoc.yml << EOF
+          site: "Rehype Rewrite {{version}}"
+          menus:
+            Home: index.html
+          EOF
+
+      - run: npm install idoc@1.26.6 -g
+      - run: idoc
+      - run: cp -rp coverage/lcov-report dist
+      # - run: npm i coverage-badges-cli markdown-to-html-cli -g
+      # - run: coverage-badges
+      # - run: markdown-to-html --output coverage/index.html
+
+      - name: Create Coverage Badges
+        uses: jaywcjlove/coverage-badges-cli@main
+        with:
+          source: coverage/coverage-summary.json
+          output: dist/badges.svg
 
       - name: Create Tag
         id: create_tag
@@ -38,7 +55,7 @@ jobs:
         with:
           commit_message: ${{steps.tag_version.outputs.tag}} ${{ github.event.head_commit.message }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage
+          publish_dir: ./dist
 
       - name: Generate Changelog
         id: changelog
