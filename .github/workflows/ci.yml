@@ -25,6 +25,9 @@ jobs:
           site: "Rehype Rewrite {{version}}"
           menus:
             Home: index.html
+            Attr: https://jaywcjlove.github.io/rehype-attr/
+            Video: https://jaywcjlove.github.io/rehype-video/
+            Ignore: https://jaywcjlove.github.io/rehype-ignore/
           EOF
 
       - run: npm install idoc@1.26.6 -g
