@@ -23,7 +23,7 @@ export type RehypeRewriteOptions = {
    */
   selector?: string;
   /** Rewrite Element. */
-  rewrite(node: Root | RootContent, index: number | null, parent: Root | Element | null): void;
+  rewrite(node: Root | RootContent, index?: number, parent?: Root | Element): void;
 }
 
 const remarkRewrite: Plugin<[RehypeRewriteOptions?], Root> = (options) => {
