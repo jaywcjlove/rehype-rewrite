@@ -7,13 +7,13 @@
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
-  "main": "lib/index.js",
+  "typings": "./lib/index.d.ts",
+  "exports": "./lib/index.js",
   "scripts": {
     "prepack": "npm run build",
     "start": "node lib/index.js",
     "watch": "tsbb watch",
-    "build": "tsbb build && npm run esm-fix",
-    "esm-fix": "tsc-esm-fix --target='lib' --ext='.js'",
+    "build": "tsbb build",
     "type-check": "tsc --noEmit",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
@@ -38,6 +38,10 @@
     "unified"
   ],
   "jest": {
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/?!(.*)"
     ]
@@ -46,17 +50,16 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "unified": "~11.0.0",
-    "unist-util-visit": "~5.0.0",
-    "hast-util-select": "~6.0.0"
+    "unified": "^11.0.3",
+    "unist-util-visit": "^5.0.0",
+    "hast-util-select": "^6.0.0"
   },
   "devDependencies": {
-    "rehype": "~13.0.0",
-    "rehype-stringify": "~10.0.0",
-    "rehype-raw": "~7.0.0",
-    "remark-parse": "~11.0.0",
-    "remark-rehype": "~11.0.0",
-    "tsc-esm-fix": "^2.20.12",
-    "tsbb": "^4.0.5"
+    "rehype": "^13.0.0",
+    "rehype-stringify": "^10.0.0",
+    "rehype-raw": "^7.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.0.0",
+    "tsbb": "^4.2.3"
   }
 }

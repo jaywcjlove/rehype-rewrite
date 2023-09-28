@@ -4,7 +4,7 @@ import remark2rehype from 'remark-rehype';
 import { rehype } from 'rehype';
 import rehypeRaw from 'rehype-raw';
 import stringify from 'rehype-stringify';
-import rehypeRewrite, { getCodeString } from '..';
+import rehypeRewrite, { getCodeString } from '../index.js';
 
 describe('getCodeString test case', () => {
   it('selector options', async () => {
