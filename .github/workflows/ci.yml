@@ -31,6 +31,7 @@ jobs:
             Ignore: https://jaywcjlove.github.io/rehype-ignore/
             Rewrite: index.html
             Video: https://jaywcjlove.github.io/rehype-video/
+            Sponsor: https://jaywcjlove.github.io/#/sponsor
           EOF
 
       - run: npm install idoc@1.26.6 -g
