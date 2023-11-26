@@ -3,6 +3,7 @@
   "version": "4.0.1",
   "description": "Rewrite element with rehype.",
   "homepage": "https://jaywcjlove.github.io/rehype-rewrite",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "license": "MIT",
   "sideEffects": false,
