@@ -14,8 +14,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
-    "outDir": "lib",
-    "baseUrl": "."
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "paths": {
+      "*": ["./*"]
+    }
   },
   "include": [
     "src/**/*"

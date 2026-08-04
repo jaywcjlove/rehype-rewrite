@@ -4,6 +4,7 @@ import remark2rehype from 'remark-rehype';
 import { rehype } from 'rehype';
 import rehypeRaw from 'rehype-raw';
 import stringify from 'rehype-stringify';
+import { describe, expect, it } from '@jest/globals';
 import rehypeRewrite, { getCodeString } from '../index.js';
 
 describe('getCodeString test case', () => {
@@ -63,7 +64,7 @@ describe('rehype-rewrite test case', () => {
         selector: 'h1',
         rewrite: (node) => {
           if (node.type === 'element') {
-            node.properties!.className = 'test';
+            node.properties!.className = ['test'];
           }
         }
       })
